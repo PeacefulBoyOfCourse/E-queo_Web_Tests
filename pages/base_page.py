@@ -2,6 +2,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+import requests
 from .locators import BasePageLocators
 
 
@@ -13,7 +14,7 @@ class BasePage:
 
     def is_disappeared(self, how, what, timeout=4):
         try:
-            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+            WebDriverWait(self.browser, timeout, 1). \
                 until_not(ec.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
@@ -36,8 +37,9 @@ class BasePage:
         return False
 
     def open(self):
+        r = requests.get(self.url)
+        assert r.status_code == 200, "Response code is not 200"
         self.browser.get(self.url)
 
     def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                     " probably unauthorised user"
+        assert self.is_element_present(*BasePageLocators.PROFILE_HEAD_INFO), "User is not authorised"
