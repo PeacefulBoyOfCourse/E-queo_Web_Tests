@@ -3,6 +3,11 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     PROFILE_HEAD_INFO = (By.CLASS_NAME, "app-profile-head-info__title")
+    LP_PAGE_BUTTON = (By.XPATH, "//a[contains(@href, '/lp/')]/..")
+
+
+class LearningProgramsLocators:
+    LP_PAGE_H1_HEADER = (By.CLASS_NAME, "learning-programs__header-content")
 
 
 class LoginPageLocators:

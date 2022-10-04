@@ -3,7 +3,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 import requests
-from .locators import BasePageLocators
+from .locators import *
 
 
 class BasePage:
@@ -41,5 +41,14 @@ class BasePage:
         assert r.status_code == 200, "Response code is not 200"
         self.browser.get(self.url)
 
+    def open_lp_page(self):
+        lp_button = self.browser.find_element(*BasePageLocators.LP_PAGE_BUTTON)
+        lp_button.click()
+
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.PROFILE_HEAD_INFO), "User is not authorised"
+
+    def should_open_lp_page(self):
+        self.open_lp_page()
+        assert self.browser.find_element(*LearningProgramsLocators.LP_PAGE_H1_HEADER), "Learning programs page is not" \
+                                                                                       " available "

@@ -20,7 +20,7 @@ class LoginPage(BasePage):
         password_field.send_keys('qwerty123')
 
     def should_be_login_url(self):
-        assert 'login' in self.browser.current_url
+        assert 'login' in self.browser.current_url, f'Page \"{self.browser.current_url}\" is opened'
 
     def click_log_in_button(self):
         log_in_button = self.browser.find_element(*LoginPageLocators.LOG_IN_BUTTON)
