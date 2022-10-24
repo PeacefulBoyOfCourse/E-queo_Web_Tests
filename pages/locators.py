@@ -3,10 +3,15 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     PROFILE_HEAD_INFO = (By.CLASS_NAME, "app-profile-head-info__title")
+    EVALUATION_PAGE_BUTTON = (By.XPATH, "//a[contains(@href, '/evaluation/')]/..")
     LP_PAGE_BUTTON = (By.XPATH, "//a[contains(@href, '/lp/')]/..")
 
 
-class LearningProgramsLocators:
+class EvaluationPageLocators:
+    EVALUATION_PAGE_H1_HEADER = (By.CLASS_NAME, "evaluation-interviews-header__title")
+
+
+class LearningProgramsPageLocators:
     LP_PAGE_H1_HEADER = (By.CLASS_NAME, "learning-programs__header-content")
 
 
